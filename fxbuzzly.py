@@ -48,11 +48,11 @@ def fxbuzzly_art(subpath):
         desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
             "description"
         ],
-        site_name=config.get("config", "site_name"),
-        colour="#" + config.get("config", "colour"),
+        site_name=config.get("site_config", "site_name"),
+        colour="#" + config.get("site_config", "colour"),
     )
 
 
 if __name__ == "__main__":
-    app.run(debug=config.getboolean("config", "debug"))
-    app.run(host=config.get("config", "host"), port=config.getint("config", "port"))
+    app.run(debug=config.getboolean("debug_config", "debug"))
+    app.run(host=config.get("debug_config", "host"), port=config.getint("debug_config", "port"))
