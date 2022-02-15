@@ -33,9 +33,9 @@ def fxbuzzly_art(subpath):
 
         return render_template(
             "index.html",
-            user=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-                "account"
-            ]["displayName"]
+            user=response.json()["data"]["fetchSubmissionByUsernameAndSlug"][
+                "submission"
+            ]["account"]["displayName"]
             + " ("
             + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
                 "account"
@@ -46,9 +46,9 @@ def fxbuzzly_art(subpath):
                 "path"
             ],
             url=origin,
-            desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-                "description"
-            ],
+            desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"][
+                "submission"
+            ]["description"],
             site_name=config.get("site_config", "site_name"),
             colour="#" + config.get("site_config", "colour"),
         )
@@ -57,4 +57,7 @@ def fxbuzzly_art(subpath):
 
 if __name__ == "__main__":
     app.run(debug=config.getboolean("debug_config", "debug"))
-    app.run(host=config.get("debug_config", "host"), port=config.getint("debug_config", "port"))
+    app.run(
+        host=config.get("debug_config", "host"),
+        port=config.getint("debug_config", "port"),
+    )
