@@ -19,38 +19,40 @@ def get_submission_data(fxbuzzly_username, fxbuzzly_title):
 
 @app.route("/<path:subpath>")
 def fxbuzzly_art(subpath):
-    split_subpath = subpath.split("/")
+    if subpath.startswith("~"):
+        split_subpath = subpath.split("/")
 
-    fxbuzzly_username = split_subpath[0].replace("~", "")
-    fxbuzzly_title = split_subpath[2]
+        fxbuzzly_username = split_subpath[0].replace("~", "")
+        fxbuzzly_title = split_subpath[2]
 
-    response = requests.post(
-        "https://graphql.buzzly.art/graphql",
-        json=get_submission_data(fxbuzzly_username, fxbuzzly_title),
-    )
-    origin = "https://buzzly.art/" + subpath
+        response = requests.post(
+            "https://graphql.buzzly.art/graphql",
+            json=get_submission_data(fxbuzzly_username, fxbuzzly_title),
+        )
+        origin = "https://buzzly.art/" + subpath
 
-    return render_template(
-        "index.html",
-        user=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-            "account"
-        ]["displayName"]
-        + " ("
-        + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-            "account"
-        ]["username"]
-        + ")",
-        img="https://submissions.buzzly.art"
-        + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-            "path"
-        ],
-        url=origin,
-        desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-            "description"
-        ],
-        site_name=config.get("site_config", "site_name"),
-        colour="#" + config.get("site_config", "colour"),
-    )
+        return render_template(
+            "index.html",
+            user=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
+                "account"
+            ]["displayName"]
+            + " ("
+            + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
+                "account"
+            ]["username"]
+            + ")",
+            img="https://submissions.buzzly.art"
+            + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
+                "path"
+            ],
+            url=origin,
+            desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
+                "description"
+            ],
+            site_name=config.get("site_config", "site_name"),
+            colour="#" + config.get("site_config", "colour"),
+        )
+    return "404"
 
 
 if __name__ == "__main__":
