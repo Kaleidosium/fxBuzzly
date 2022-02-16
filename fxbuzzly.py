@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, Response, render_template
 from configparser import ConfigParser
 import requests
 
@@ -52,7 +52,10 @@ def fxbuzzly_art(subpath):
             site_name=config.get("site_config", "site_name"),
             colour="#" + config.get("site_config", "colour"),
         )
-    return "404"
+    return Response(
+        "Subpath is not valid",
+        status=400,
+    )
 
 
 if __name__ == "__main__":
