@@ -31,24 +31,44 @@ def fxbuzzly_art(subpath):
         )
         origin = "https://buzzly.art/" + subpath
 
+        submission_response_json = response.json()["data"][
+            "fetchSubmissionByUsernameAndSlug"
+        ]["submission"]
+
+        if submission_response_json["category"]["isNsfw"]:
+            return render_template(
+                "index.html",
+                user=submission_response_json["account"]["displayName"]
+                + " ("
+                + submission_response_json["account"]["username"]
+                + ")",
+                url=origin,
+                desc="Image embeds are not available for NSFW submissions.",
+                site_name=config.get("site_config", "site_name"),
+                colour="#" + config.get("site_config", "colour"),
+            )
+        if submission_response_json["account"]["hideFromGuests"]:
+            return render_template(
+                "index.html",
+                user=submission_response_json["account"]["displayName"]
+                + " ("
+                + submission_response_json["account"]["username"]
+                + ")",
+                url=origin,
+                desc="Image embeds are disabled by this user.",
+                site_name=config.get("site_config", "site_name"),
+                colour="#" + config.get("site_config", "colour"),
+            )
+
         return render_template(
             "index.html",
-            user=response.json()["data"]["fetchSubmissionByUsernameAndSlug"][
-                "submission"
-            ]["account"]["displayName"]
+            user=submission_response_json["account"]["displayName"]
             + " ("
-            + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-                "account"
-            ]["username"]
+            + submission_response_json["account"]["username"]
             + ")",
-            img="https://submissions.buzzly.art"
-            + response.json()["data"]["fetchSubmissionByUsernameAndSlug"]["submission"][
-                "path"
-            ],
+            img="https://submissions.buzzly.art" + submission_response_json["path"],
             url=origin,
-            desc=response.json()["data"]["fetchSubmissionByUsernameAndSlug"][
-                "submission"
-            ]["description"],
+            desc=submission_response_json["description"],
             site_name=config.get("site_config", "site_name"),
             colour="#" + config.get("site_config", "colour"),
         )
