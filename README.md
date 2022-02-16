@@ -1,6 +1,6 @@
 # fxBuzzly
 
-Buzzly.art links do not embed in Discord, this fixes them. Just add `fx` before the `buzzly.art` to see an embed.
+Buzzly.art links do not embed in Discord, this fixes them (rudimentarily). Just add `fx` before the `buzzly.art` to see an embed.
 
 > **NOTE**: fxBuzzly will **NOT** embed NSFW submissions or users who have set their posts to be unviewable by guests.
 
