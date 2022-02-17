@@ -2,7 +2,7 @@
 
 Buzzly.art links do not embed in Discord, this fixes them (rudimentarily). Just add `fx` before the `buzzly.art` to see an embed.
 
-> **NOTE**: fxBuzzly will **NOT** embed NSFW submissions or users who have set their posts to be unviewable by guests.
+> **NOTE**: fxBuzzly will **NOT** embed NSFW submissions or users who have set their posts to be unviewable by guests. We are also **NOT** affiliated with Buzzly.art.
 
 ![example](example.gif)
 
@@ -10,4 +10,4 @@ Inspired by [TwitFix](https://github.com/robinuniverse/TwitFix) and [fxdeviantar
 
 ##
 
-This project is licensed under The Unlicense, Made with 🧪 by [Kaleidosium](https://github.com/Kaleidosium).
+This (unofficial) project is licensed under The Unlicense, Made with 🧪 by [Kaleidosium](https://github.com/Kaleidosium).

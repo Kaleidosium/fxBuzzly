@@ -36,6 +36,8 @@ def fxbuzzly_art(subpath):
             "https://graphql.buzzly.art/graphql",
             json=get_submission_data(fxbuzzly_username, fxbuzzly_title),
         )
+
+        # Original link to submission, to be used for the `url` parameter in the template
         origin = "https://buzzly.art/" + subpath
 
         # Shorthand Variable
