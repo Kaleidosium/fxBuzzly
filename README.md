@@ -1,5 +1,7 @@
 # fxBuzzly
 
+**[NO LONGER IN OPERATION]** For more info, please see this [tweet](https://twitter.com/UnimpressivelyM/status/1503496620280881153).
+
 Buzzly.art submission links do not embed in Discord, this fixes them (rudimentarily). Just add `fx` before the `buzzly.art` to see an embed.
 
 > **NOTE**: fxBuzzly will **NOT** embed NSFW submissions or submissions by users who have set their profile to be unviewable by guests. We are also **NOT** affiliated with Buzzly.art.
